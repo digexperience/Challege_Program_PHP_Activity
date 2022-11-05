@@ -45,28 +45,24 @@ if(isset($_POST['btncheckout'])) {
 
         $pricesDetais = array(
             'brandprices' => array(
-                'Coke' => 15,
-                'Sprite' => 20,
-                'Royal' => 20,
-                'Pepsi' => 15,
-                'Mountaindew' => 20
+                    'Coke' => 15,
+                    'Sprite' => 20,
+                    'Royal' => 20,
+                    'Pepsi' => 15,
+                    'Mountaindew' => 20
             ),
             'brandsize' => array(
-                'Regular' => 0,
-                'UpSize' => 5,
-                'Jumbo' => 10
+                    'Regular' => 0,
+                    'UpSize' => 5,
+                    'Jumbo' => 10
             )
         );
 
         echo '<b>Purchase Summary:</b> <br><br>';
-
         foreach($arrbrand as $keybrand => $valuebrand){
-            $amount += ($quanitem * $pricesDetais['brandprices'][$valuebrand]);
+            $amount += $quanitem * ($pricesDetais['brandprices'][$valuebrand] + $pricesDetais['brandsize'][$selectedsize]);
             echo '<li> '. $quanitem . ' pieces of ' . $selectedsize . ' ' . $valuebrand . ' amounting to ₱ ' . $quanitem * ($pricesDetais['brandprices'][$valuebrand] + $pricesDetais['brandsize'][$selectedsize]). '</li>';
         }
-
-        $amount += (count($arrbrand) * $quanitem) * $pricesDetais['brandsize'][$selectedsize];
-        
         echo '<br>';
         echo '<b>Total Number of Items: </b>',count($arrbrand) * $quanitem,'<br>';
         echo '<b>Total Amount: </b>',$amount ,'<br>';
